@@ -3,6 +3,7 @@ package dev.wellingtondvkafkaspring.kafka.configuration;
 //CRIANDO CONFIGURAÇÃO DO CONSUMIDOR E PRODUTOR
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import dev.wellingtondvkafkaspring.kafka.dto.OrdemCompra;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -32,12 +33,12 @@ public class KafkaConfig {
     }
 
     @Bean
-    public ProducerFactory<String, Object> producerFactory(){
+    public ProducerFactory<String, OrdemCompra> producerFactory(){
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
     @Bean
-    public KafkaTemplate<String, Object> kafkaTemplate(){
+    public KafkaTemplate<String, OrdemCompra> kafkaTemplate(){
         return new KafkaTemplate<>(producerFactory());
     }
 
@@ -55,13 +56,13 @@ public class KafkaConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, Object> consumerFactory(){
+    public ConsumerFactory<String, OrdemCompra> consumerFactory(){
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory(){
-        ConcurrentKafkaListenerContainerFactory<String, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, OrdemCompra> kafkaListenerContainerFactory(){
+        ConcurrentKafkaListenerContainerFactory<String, OrdemCompra> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
         return factory;
