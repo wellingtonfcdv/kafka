@@ -1,2 +1,4 @@
-package dev.wellingtondvkafkaspring.kafka.consumer;public class KafkaConsumerApplication {
+package dev.wellingtondvkafkaspring.kafka.consumer;
+
+public class KafkaConsumerApplication {
 }

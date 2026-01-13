@@ -18,7 +18,7 @@ public class KafkaProducerApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception{
         for (int i = 0; i < 10; i++){
-            OrdemCompra ordem = new OrdemCompra(1L,"Notebook",2,3500.00);
+            OrdemCompra ordem = new OrdemCompra(1L,"Notebook :" + i,2,3500.00);
             kafkaTemplate.send("ordem-Compra",ordem);
             log.info("Ordem de compra enviada: {}",ordem);
         }
